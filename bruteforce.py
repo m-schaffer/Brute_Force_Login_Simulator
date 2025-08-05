@@ -5,9 +5,25 @@ from log_watcher import monitor_logs
 import os
 import sys
 from colorama import Fore, Style
+import ipaddress
+
+def is_valid_ip(ip_str):
+    try:
+        ip = ipaddress.ip_address(ip_str)
+        return True
+    except ValueError:
+        return False
+
+def get_valid_ip(prompt="[*] [ATTACKER] Input your IP-Address: "):
+    while True:
+        ip = input(prompt)
+        if is_valid_ip(ip):
+            return ip
+        print("[!] Invalid IP address. Please enter a valid host IP (e.g., 192.168.1.42)")
 
 def bruteforce(args):
     if args.Search:
+        print(Fore.RED+f"[*] [ATTACKER] Starting user enumeration"+Style.RESET_ALL)
         users = []
         base_path = os.path.dirname(os.path.abspath(__file__))
         filepath = os.path.join(base_path, "Wordlists/names.txt")
@@ -27,7 +43,7 @@ def bruteforce(args):
             base_path = os.path.dirname(os.path.abspath(__file__))
             filepath = os.path.join(base_path, "Wordlists/10k-most-common.txt")
         try:
-            ipAddr = input("Input your IP-Adress:")
+            ipAddr = get_valid_ip()
             with open(filepath, "r") as f:
                 for line in f:
                     password = line.strip()
@@ -37,7 +53,7 @@ def bruteforce(args):
                             return
                     except Exception as e:
                         print(Fore.RED + f"[!] [ATTACKER] {e}" + Style.RESET_ALL)
-                        ipAddr = input("[!] [ATTACKER] Enter new IP: ")
+                        ipAddr = get_valid_ip("[!] [ATTACKER] Enter new IP: ")
         except FileNotFoundError:
             print(Fore.RED + f"[!] [ATTACKER] Wordlist file not found: {filepath}" + Style.RESET_ALL)
             sys.exit(1)
