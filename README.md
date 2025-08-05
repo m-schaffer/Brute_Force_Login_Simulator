@@ -1,6 +1,6 @@
 # BruteForce Attack Tool — Red & Blue Team Simulation
 
-A simple multi-threaded brute force password attack simulator written in Python.
+A multi-threaded brute force password attack simulator written in Python for cybersecurity training.
 This Python-based brute force password attack simulator is designed as a **learning and training tool for both Red and Blue Teams** in cybersecurity.
 
 - **Red Team:** Practice offensive security techniques by performing controlled brute force attacks against a simulated login system.
@@ -67,6 +67,14 @@ Run the tool with either username enumeration or brute force attack:
   python bruteforce.py --demo -u <username>
   ```
 
+`addUser.py` Usage:
+
+* Run `addUser.py` to interactively add a new user with a SHA-256 hashed password to the database.
+
+  ```bash
+  python addUser.py
+  ```
+
 ---
 
 ## Examples
@@ -109,7 +117,7 @@ Found 3 users
 python bruteforce.py -u julian
 [*] [LOG-WATCHER] Starting log watcher...
 [*] [ATTACKER] Starting bruteforce attack on user 'julian'
-Input your IP-Adress:192.168.12.13
+Input your IP-Address:192.168.12.13
 [+] Password found: julian:superman
 ```
 
@@ -119,12 +127,23 @@ Input your IP-Adress:192.168.12.13
 $ python bruteforce.py -u philip
 [*] [LOG-WATCHER] Starting log watcher...
 [*] [ATTACKER] Starting bruteforce attack on user 'philip'
-Input your IP-Adress:192.168.12.13
+Input your IP-Address:192.168.12.13
 [!] [LOG-WATCHER] Blocking IP: 192.168.12.13
 [!] [ATTACKER] IP BLOCKED
 [!] [ATTACKER] Enter new IP: 192.168.12.134
 [+] Password found: philip:eyphed
 ```
+
+### Add a new user by running
+
+```bash
+$ python addUser.py 
+Username:alex
+Password:alex
+[+] User 'alex' added successfully
+```
+
+------
 
 ## Purpose
 
@@ -143,6 +162,7 @@ This tool provides a practical environment to understand the interaction between
 - `Wordlists/` — Contains sample username and password wordlists
 - `auth.log` — Authentication log 
 - `database.txt` — Simple username-password hash store, uses SHA-256 for password hashes
+- `addUser.py` — Script to add new users with SHA-256 hashed passwords to `database.txt`
 
 ---
 
