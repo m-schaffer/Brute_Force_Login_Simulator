@@ -16,6 +16,7 @@ This Python-based brute force password attack simulator is designed as a **learn
 - Automatic IP blocking to simulate defensive countermeasures
 - Demo mode with lower thresholds for easier testing
 - Color-coded console output to clearly distinguish attacker and defender actions
+- Interactive IP address input with validation (**simulates attacker IP rotation**).
 
 ---
 
